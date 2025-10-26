@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seal Site</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            background-color: #bebebe;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #3d3d3d;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 2000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff0000;
+        }
+        main {
+            flex: 1;
+            padding: 120px 20px 20px;
+            text-align: center;
+        }
+        h1 {
+            color: rgb(197, 197, 197);
+        }
+        h2 {
+            text-align: center;
+            color: #000000;
+        }
+        p {
+            color: #898e92;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #b1f0fa;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+        table, th, td {
+            border: 2px solid #333;
+        }
+        th, td {
+            padding: 10px 20px;
+        }
+        /* ======= Фото ======= */
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 350px;
+            height: 350px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        img:hover {
+           transform: scale(1.05); 
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;  /* відстань між фото */
+            flex-wrap: wrap;  /* щоб гарно переносилися на мобільних */
+            margin-top: 20px;
+        }
+        .image-row img {
+            width: 320px;
+            height: 320px;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .image-row img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ======= Нові секції ======= */
+        section {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Друзі Боба */
+        .friends-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .friend-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 220px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .friend-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+        }
+        .friend-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .friend-card h3 {
+            color: #00796b;
+        }
+
+        /* ======= Footer ======= */
+        footer {
+        background: linear-gradient(180deg, #fffdfd, #000000);
+        color: white;
+        padding: 40px 20px 20px;
+        font-size: 15px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+        border-top: 4px solid #c5ffc8;
+        }
+
+        .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1300px;
+        margin: 0 auto;
+        text-align: left;
+        }
+
+        .footer-column {
+        flex: 1 1 220px;
+        min-width: 220px;
+        padding: 10px;
+        }
+
+        .footer-column h3 {
+        color: #960d0d;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        }
+
+        .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .footer-column li {
+        margin-bottom: 10px;
+        transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-column li:hover {
+        transform: translateX(5px);
+        color: #ffeb3b;
+        }
+
+        .footer-column a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+        color: #ffeb3b;
+        }
+
+        /* Соцмережі */
+        .social-links a {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.15);
+        transition: background 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+        background-color: #afafaf;
+        color: #c2c2c2;
+        transform: translateY(-3px);
+        }
+
+        /* Копірайт */
+        footer .copyright {
+        margin-top: 10px;
+        font-size: 13px;
+        color: #c8e6c9;
+        }
+
+        /* ======= Головне фото ======= */
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            margin-top: 25px; /* щоб не заходило під header */
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* обрізає фото красиво по висоті */
+            filter: brightness(85%);
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            text-align: center;
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* ======= Адаптивність ======= */
+        @media (max-width: 700px) {
+            img {
+                width: 90%;
+                height: auto;
+            }
+            .friends-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+            .hero-image {
+                height: 220px;
+            }
+            .hero-text {
+                font-size: 20px;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+ <header>
+          <div class="header-container"> 
+            <h1>Тюленьчики</h1>
+            <nav>
+             <a href="#top" title="Головна">Головна</a>
+              <a href="SealMORE.html" title="Більше про тюленів">Більше про сайт
+              </a>
+               <a href="#contact" title="Контакти">Контакти</a>
+               </nav>
+          </div>  
+</header>   
+ <main>
+
+  <div class="hero-image">
+    <img src="SealGIF.gif" alt="SEAL BANNER">
+     <div class="hero-text">
+        <h2 style="color: rgb(145, 208, 218);">YOU'RE WELCOME! | ЛАСКАВО ПРОСИМО!</h2>
+         </div>
+          </div><br>
+           <hr width="100%" size="5" color="white"> 
+
+    <h2>Про тюленів</h2>
+     <table>
+         <tr>
+          <th>назва</th>
+            <td>тюлень|seal</td>
+             </tr>
+               <tr>
+                 <th>За способом харчування</th>
+                   <td>хижак</td>
+                     </tr>
+                       <tr>
+                         <th>Їжа</th>
+                          <td>риба</td>
+        </tr>
+        <tr>
+            <th>люди бачать їх як</th>
+        <td>милі тварини</td>
+        </tr>
+    </table>
+    
+    <h2>Фото і гівки тюленчиків</h2>
+
+    <div class="image-row">
+<img src="seal.jpg" alt="center"><br>
+          <img src="gif.gif" alt="center"><br>
+           <img src="images.jpg" alt="center"> 
+</div> 
+           
+           <h3>Про Тюленів</h3>
+              <p>Тюлені – це морські ссавці з ряду хижих, які входять до групи ластоногих,  Вони поділяються на дві родини: вухастих,та справжніх
+                До ключових особливостей тюленів належать витягнуте тіло, кінцівки, що перетворилися на ласти, та значний прошарок підшкірного жиру. 
+                Вухаті тюлені, ймовірно, походять від примітивних ведмедеподібних, справжні — імовірно від примітивних куницевих.
+                 У справжніх тюленів немає вушних раковин.
+
+              </p>
+<section id="facts"><h3>Цікаві факти про тюленів та їх особливості</h3> 
+<ul style="box-shadow: #000000; background: #cacaca;">
+<li>
+    💧Ссавці, що живуть у воді
+      Тюлені — це морські ссавці, тобто вони народжують дитинчат, яких вигодовують молоком, дихають легенями та мають хутро.</li>
+    <li>
+    🌅Відмінно плавають, але незграбні на суші
+      Вода — їхнє природне середовище. Вони використовують свої передні та задні плавці для плавання, але на суші рухаються повільно, волочачи тіло.
+</li>
+<li>
+    😮‍💨Можуть затримувати дихання до 30 хвилин
+       Деякі види тюленів можуть пірнати на глибину понад 500 метрів і затримувати дихання до півгодини, уповільнюючи серцебиття під час занурення.
+</li>
+</ul>
+</section>
+
+<section id="friends">
+    <h2>Друзі тюленчиків</h2>
+    <div class="friends-container">
+        <div class="friend-card">
+            <img src="friends.jpg" alt="">
+            <h3>Тюлені і люди</h3>
+            <p>Тюлені і люди мають гарні стосунки тому що тюлені не нападають на людей а люди не ставляться звірськи до тюленів це робе їх "друзями"</p>
+        </div>
+        <div class="friend-card">
+            <img src="seal kid.jpg" alt="">
+            <h3>Дитинчата тюленів</h3>
+            <p>Тюлені при необхідності можуть гратися з дитинчатами інших тюленів поки їх немає рядом з дитинчатом</p>
+        </div>
+        <div class="friend-card">
+            <img src="seal and dolphin.jpg" alt="">
+            <h3>Тюлені і дельфіни</h3>
+            <p>Тюлені і дельфіни мають гарні стосунки що дає їм змогу плавати та полювати на рибу разом</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+ <footer id="contact">
+      <div class="footer-container">
+        <div class="footer-column">
+           <p>📍:Країна: Україна Місто: Кропивницький</p>  
+            <p>📞: +380(66) 834 7* **</p>  
+              <p>📧: susbanan***@gmail.com</p>
+              </div>
+                 <div class="footer-column">
+                   <h3>Про сайт:</h3>
+                    <h3>Джерело: Wikipedia, Youtube, BOOKS</h3>
+                    <h3>Автор: Тимур</h3>
+              </div>
+      </div>
+ </footer>
+</body>
+</html>
